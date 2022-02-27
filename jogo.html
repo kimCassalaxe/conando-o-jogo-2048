@@ -6,15 +6,16 @@
   <title>jogar</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' type='text/css' media='screen' href='/css/jogar.css'>
-  <script src='main.js'></script>
+  
 </head>
 <body>
   
   <main>
     <div class="container">
       <div class="banner">
-        <h1>2028</h1>
+        
         <div class="placar">
+          <h1>2028</h1>
           <div class="pontos">
           <span>pontuação</span>
           <p>00</p>
@@ -24,31 +25,33 @@
             <p>00</p>
             </div>
         </div>
+        <div class="seting">
+        <a href="index.html"><img src="/icons/home.png" alt=""></a>
+        <a href="#"><img src="/icons/back.png" alt=""></a>
+        <a href="#"><img src="/icons/refresh.png" alt=""></a>
       </div>
-      <div class="seting">
-        <a href="#index.html"></a>
-        <a href="#index.html"></a>
-        <a href="#index.html"></a>
       </div>
-      <div class="lable-play">
-        <div class="bloco1 bloco"></div>
-        <div class="bloco2 bloco"></div>
-        <div class="bloco3 bloco"></div>
-        <div class="bloco4 bloco"></div>
-        <div class="bloco5 bloco"></div>
-        <div class="bloco6 bloco"></div>
-        <div class="bloco7 bloco"></div>
-        <div class="bloco8 bloco"></div>
-        <div class="bloco9 bloco"></div>
-        <div class="bloco10 bloco"></div>
-        <div class="bloco11 bloco"></div>
-        <div class="bloco12 bloco"></div>
-        <div class="bloco13 bloco"></div>
-        <div class="bloco14 bloco"></div>
-        <div class="bloco15 bloco"></div>
-        <div class="bloco16 bloco"></div>
+      
+      <div class="lable-play" id="lable-play"onclick="mover()">
+        <div id="bloco1" class="bloco1 bloco"></div>
+        <div id="bloco2" class="bloco2 bloco"></div>
+        <div id="bloco3" class="bloco3 bloco"></div>
+        <div id="bloco4" class="bloco4 bloco"></div>
+        <div id="bloco5" class="bloco5 bloco"></div>
+        <div id="bloco6" class="bloco6 bloco"></div>
+        <div id="bloco7" class="bloco7 bloco"></div>
+        <div id="bloco8" class="bloco8 bloco"></div>
+        <div id="bloco9" class="bloco9 bloco"></div>
+        <div id="bloco10" class="bloco10 bloco"></div>
+        <div id="bloco11" class="bloco11 bloco"></div>
+        <div id="bloco12" class="bloco12 bloco"></div>
+        <div id="bloco13" class="bloco13 bloco"></div>
+        <div id="bloco14" class="bloco14 bloco"></div>
+        <div id="bloco15" class="bloco15 bloco"></div>
+        <div id="bloco16" class="bloco16 bloco"></div>
       </div>
     </div>
+    <script src='js/jogo.js'></script>
   </main>
 </body>
 </html>

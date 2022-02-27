@@ -3,6 +3,9 @@
   box-sizing: border-box;
   font-family: 'Roboto',sans-serif;
 }
+:root{
+  --corT:rgba(218, 218, 218, 0.801);
+}
 main{
   width: 100vw;
   height: 100vh;
@@ -12,8 +15,10 @@ main{
   background: linear-gradient(rgb(0, 255, 221), rgb(58, 6, 230));
 }
 .container{
+  width: 230px;
   text-align: center;
   color: whitesmoke;
+
  
 }
 .container>.banner{
@@ -23,10 +28,23 @@ main{
   font-size: 3.3rem;
   padding: 1rem;
 }
-.container>.banner>p{
+.container>.banner>.classe{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.container>.banner>.classe>.botao{
+  background-color: rgba(240, 248, 255, 0);
+  border: none;
+  color: var(--corT);
+  font-size: 2rem;
+  cursor: pointer;
+}
+.container>.banner>.classe>p{
   font-size: 1.2rem;
-  color: rgba(218, 218, 218, 0.801);
+  color:var(--corT);
   margin: 1rem;
+  text-transform: capitalize;
 }
 .container>.banner>a{
 
@@ -51,6 +69,6 @@ a{
   align-self: center;
 }
 .sets>a>img{
-  width: 2rem;
+  width: 1.6rem;
   margin: .1rem;
 }

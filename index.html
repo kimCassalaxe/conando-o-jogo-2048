@@ -6,15 +6,18 @@
   <title>2028</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
-  <script src='main.js'></script>
 </head>
-<body>
+<body id="body" onload="start()">
   <main>
     <div class="container">
       <div class="banner">
-        <h1>2028</h1>
-        <p>&#60; Classic(4X4) &#62;</p>
-        <a href="#">JOGAR</a>
+        <h1>2028</h1> 
+        <div class="classe">
+          <button id="back" class="botao" onclick="back()">&#60;</button>
+          <p id="nivel"></p>
+          <button id="next" class="botao" onclick="next()">&#62;</button>
+        </div>
+        <a href="jogo.html">JOGAR</a>
         <a href="#">Avaliar</a>
         <a href="#">sobre</a>
 
@@ -27,5 +30,6 @@
       </div>
     </div>
   </main>
+  <script src='/js/jogo.js'></script>
 </body>
 </html>
