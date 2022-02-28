@@ -8,7 +8,7 @@
   <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
 </head>
 <body id="body" onload="start()">
-  <main>
+  <main id="main">
     <div class="container">
       <div class="banner">
         <h1>2028</h1> 
@@ -17,16 +17,16 @@
           <p id="nivel"></p>
           <button id="next" class="botao" onclick="next()">&#62;</button>
         </div>
-        <a href="jogo.html">JOGAR</a>
+        <a href="jogo.html" onclick="criarTabuleiro()">JOGAR</a>
         <a href="#">Avaliar</a>
-        <a href="#">sobre</a>
+        <a href="sobre.html">sobre</a>
 
       </div>
       <div class="sets">
         <a href="#"><img src="/icons/004-block.png" alt=""></a>
         <a href="#"><img src="/icons/rei.png" alt=""></a>
         <a href="#"><img src="/icons/001-medal.png" alt=""></a>
-        <a href="#"><img src="/icons/003-paint-and-brush.png" alt=""></a>
+        <a href="#" id="cor" onclick="mudarACorDoAmbiente()"><img src="/icons/003-paint-and-brush.png" alt=""></a>
       </div>
     </div>
   </main>

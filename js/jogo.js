@@ -1,27 +1,46 @@
+window.history.back;
 
 //niveis do jogo
 let niveis= [['tiny(3X3)',3],['classic(4X4)',4],['big(5X5)',5],['bigger(6X6)',6],['huge(7X7)',7],['huger(8X8)',8]];
-//incrementador do nivel do jogo
-let i1= 0;
-//nivel atual
-let nivelAtual=document.querySelector('#nivel');
+//cores do ambiente
 
+let cor=['linear-gradient(rgb(18, 54, 153), rgba(122, 253, 187, 0.856))','linear-gradient(rgb(0, 255, 221), rgb(185, 6, 230))','linear-gradient(rgb(0, 89, 255), rgb(6, 230, 92))','linear-gradient(rgb(183, 0, 255), rgb(215, 230, 6))','linear-gradient(rgb(183, 0, 255), rgb(230, 140, 2))'];
+//incrementador do nivel do jogo
+let i1 =0,i2= 0;
+//nivel atual
+let nivelAtual=document.getElementById('nivel');
+//esconha para o swhitch
+let escolha ;
 //foncao que inicialisa o nivel do jogo
 function start(){
-  nivelAtual.innerHTML= niveis[i1][0];
+  escolha = niveis[i1][0];
+  nivelAtual.innerHTML = escolha;
 }
 //foncao que altera o nivel do jogo
 function back(){
   if(i1>0){
     i1--;
-    nivelAtual.innerHTML = niveis[i1][0];
+    escolha = niveis[i1][0];
+    nivelAtual.innerHTML = escolha;
   }
 }
 //foncao que altera o nivel do jogo
 function next(){
   if(i1<5){
     i1++;
-    nivelAtual.innerHTML = niveis[i1][0];
+    escolha = niveis[i1][0];
+    nivelAtual.innerHTML = escolha;
+  }
+}
+
+let main= document.getElementById('main');
+function mudarACorDoAmbiente(){
+  if(i2==cor.length ||i2>cor.length){
+    i2=0;
+  }
+  if(i2<cor.length){
+    main.style.background=cor[i2];
+    i2++;
   }
 }
 
@@ -60,8 +79,72 @@ function criarBloco(v){
   return el;
 }
 ///
+ let tabuleiro =document.getElementById('lable-play');
+function criarNivel(p){
+  let blocosTb= document.createElement('div');
+  console.log('criou');
+  blocosTb.setAttribute('class','bloco');
+  blocosTb.setAttribute('id','bloco'+p);
+  
+  return blocosTb;
+}
 function criarTabuleiro(){
   
+  console.log('22');
+  switch(escolha){
+    case 'tiny(3X3)':{
+      
+      tabuleiro.style.gridTemplateColumns='1fr 1fr 1fr';
+      tabuleiro.style.gridTemplateRows='repeat(3,1fr)';
+      console.log(escolha ,tabuleiro);
+      for(i=1;i<=9;i++){alert('ddd'+tabuleiro)
+        tabuleiro.appendChild(criarNivel(i));
+      }
+      break;
+    }
+    case'classic(4X4)':{
+      tabuleiro.style.gridTemplateColumns='repeat(4,1fr)';
+      tabuleiro.style.gridTemplateRows='repeat(4,1fr)';
+      for(i=1;i<=16;i++){
+        tabuleiro.appendChild(criarNivel(i));
+      }
+      break;
+    }
+    case'big(5X5)':{
+      tabuleiro.style.gridTemplateColumns='repeat(5,1fr)';
+      tabuleiro.style.gridTemplateRows='repeat(5,1fr)';
+      for(i=1;i<=25;i++){
+        tabuleiro.appendChild(criarNivel(i));
+      }
+      break;
+    }
+    case'bigger(6X6)':{
+      tabuleiro.style.gridTemplateColumns='repeat(6,1fr)';
+      tabuleiro.style.gridTemplateRows='repeat(6,1fr)';
+      for(i=1;i<=36;i++){
+        tabuleiro.appendChild(criarNivel(i));
+      }
+      break;
+    }
+    case'huge(7X7)':{
+      tabuleiro.style.gridTemplateColumns='repeat(7,1fr)';
+      tabuleiro.style.gridTemplateRows='repeat(7,1fr)';
+      for(i=1;i<=49;i++){
+        tabuleiro.appendChild(criarNivel(i));
+      }
+      break;
+    }
+    case'huger(8X8)':{
+      tabuleiro.style.gridTemplateColumns='repeat(8,1fr)';
+      tabuleiro.style.gridTemplateRows='repeat(8,1fr)';
+      for(i=1;i<=64;i++){
+        tabuleiro.appendChild(criarNivel(i));
+      }
+      break;
+    }
+  }
+  
+
 }
 //let blocoV= document.getElementById('blocoV');
 //posi e o numero de blocos no pabuleiro
