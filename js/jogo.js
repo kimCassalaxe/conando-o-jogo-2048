@@ -66,7 +66,7 @@ let tabuleiro =document.getElementById('lable-play');
     }
   }
   function valorAleatorio16(){
-    return parseInt(Math.floor(Math.random() * 17));
+    return parseInt(Math.floor(Math.random() * 4+1));
   }
   //funcao para somar o valor dos blocos adjacentes e com valores iguais  
   function somar(v1,v2){
@@ -98,13 +98,13 @@ function criarBloco(v){
   return el;
 }
 ///
-function criarEspaconNoTabuleiro(p){
+function criarEspaconNoTabuleiro(p1,p2){
   let blocosTb= document.createElement('div');
+  blocosTb.setAttribute('class',String(p1)+String(p2)+" bloco");
+  blocosTb.setAttribute('id',String(p1)+String(p2));
   console.log('criou');
-  blocosTb.setAttribute('class','bloco');
-  blocosTb.setAttribute('id','bloco'+p);
-  
   return blocosTb;
+  
 }
 
 
@@ -124,8 +124,10 @@ function criarTabuleiro(){
     case'classic(4X4)':{
       tabuleiro.style.gridTemplateColumns='repeat(4,1fr)';
       tabuleiro.style.gridTemplateRows='repeat(4,1fr)';
-      for(i=1;i<=16;i++){
-        tabuleiro.appendChild(criarEspaconNoTabuleiro(i));
+      for(i=1;i<=4;i++){
+        for(j=1;j<=4;j++){
+          tabuleiro.appendChild(criarEspaconNoTabuleiro(i,j));
+        }
       }
       break;
     }
@@ -165,33 +167,57 @@ function criarTabuleiro(){
   
 
 }
+//posi e o numero de blocos no pabuleiro
+let posi = [4][4];
+
+
 //esta foncao coloca o bloco no espaco certo
+
 function inserirBloco(){
   do{
- //b1 sera elemento que albergara o bloco que foi criado 
- //na foncao criarEspaconNoTabuleiro()
-  let b1 = document.getElementById('bloco'+valorAleatorio16());
-  if(b1.getElementsByClassName('blocoV').length>0){
-    console.log(b1.getElementsByClassName('blocoV').length)
-    continue;
-  }
-  else{
+//b1 sera elemento que albergara o bloco que foi criado 
+//na foncao criarEspaconNoTabuleiro()
+let b1 = document.getElementById(String(valorAleatorio16())+String(valorAleatorio16()));
+ 
+  if(b1.children.length==0){
     //se o espaço estiver vasio entao coloca o bloco
     b1.appendChild(criarBloco(valor24()));
     break;
   }
-  }while(true);  
+  else{
+    console.log(b1.children.length);
+    continue;
+  }
+  }while(b1.children.length<=15);  
 }
+function calcular(x,y){
+  let elmentoEx = [];
+  let elmentoInt = [];
+  if(x<200){
+    //vai pegar todos elementos mais a esquerda
+    for (let index2 = 1; index2 <=4; index2++) {
+      for (let index1 = 4; index1 >=1; index1--) {
+      let b2= document.getElementById(String(index2)+String(index1));
+      if(b2.children.length==0){continue;}
+      else if(b2.children.length!=0 && String(index2)+String(index1)=='14'){continue}
+      else{
+        //vai pegar todos elementos adjacente 
+        b2.insertAdjacentElement(index1+1,b2.children[0]);
+      } 
+    }
+    
 
-//let blocoV= document.getElementById('blocoV');
-//posi e o numero de blocos no pabuleiro
-let posi = [3][3];
+    }
+  }
+  //if(elmentoInt[0].lastChild.lastChild.innerHTML==elmentoEx[0].lastChild.lastChild.innerHTML){
+  //  somar(parseInt(elmentoEx[0].lastChild.lastChild.innerHTML),parseInt(elmentoInt[0].lastChild.lastChild.innerHTML))
+  //}
+  
+}
 let i=0;
 function mover(){
-  inserirBloco()
-
+  
 }
-
 //document.querySelector('body').addEventListener('mousemove', function(event) {
 //  var posX = event.clientX,
 //      posY = event.clientY;
@@ -199,15 +225,15 @@ function mover(){
 
 
 //Você pode usar o evento click ao invés de mousemove.
-//
-//var lastClickPosition;
-//
-//document.addEventListener('click', storePosition, true);
-//function storePosition(e) {
-//  lastClickPosition = { x: e.pageX, y: e.pageY };
-//  console.log(lastClickPosition);
-//}
-//<p>Clique na página</p>
+
+var lastClickPosition;
+
+document.addEventListener('load', storePosition, true);
+function storePosition(e) {
+  lastClickPosition = { x: e.pageX, y: e.pageY };
+  console.log('entrou');
+  inserirBloco()
+}
 
 
 /*
@@ -251,17 +277,3 @@ tabuleiro.addEventListener('touchmove',/*este codigo nao e meu*/ /* function(e) 
 }, false);
 */
 
-//function mover1(){
-//  let pos ;
-//  console.log(pos+' kim');
-//
-//  var obj = document.getElementById ("sat");
-//  / * Catch touch * /
-//  obj.addEventListener ("touchstart", função (evento) (
-//    if (event.targetTouches.length == 1) {}
-//  var touch = event.targetTouches;
-//  touchOffsetX = touch.pageX - touch.target.offsetLeft;
-//  touchOffsetY = touch.pageY - touch.target.offsetTop;
-//  }
-//  ), 'falso');
-//}
