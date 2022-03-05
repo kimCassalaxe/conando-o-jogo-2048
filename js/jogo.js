@@ -78,10 +78,10 @@ let tabuleiro =document.getElementById('lable-play');
   }
 
 //atualizar a pagina
+document.getElementById('refresh').addEventListener('click',refresh);
 function refresh(){
   location.reload();
 }
-document.getElementById('refresh').addEventListener('click',refresh);
 
 //esta funcao vai retormar apenas a o bloco com o valor
 function criarBloco(v){
@@ -127,7 +127,11 @@ function criarTabuleiro(){
       for(i=1;i<=4;i++){
         for(j=1;j<=4;j++){
           tabuleiro.appendChild(criarEspaconNoTabuleiro(i,j));
+          
         }
+      }
+      for(i=0;i<=2;i++){
+        criarBloco(valor24())
       }
       break;
     }
@@ -174,12 +178,13 @@ let posi = [4][4];
 //esta foncao coloca o bloco no espaco certo
 
 function inserirBloco(){
+  
   do{
-//b1 sera elemento que albergara o bloco que foi criado 
-//na foncao criarEspaconNoTabuleiro()
-let b1 = document.getElementById(String(valorAleatorio16())+String(valorAleatorio16()));
- 
-  if(b1.children.length==0){
+  //b1 sera elemento que albergara o bloco que foi criado 
+  //na foncao criarEspaconNoTabuleiro()
+  let b1 = document.getElementById(String(valorAleatorio16()) + String(valorAleatorio16()));
+    console.log(b1);
+  if(b1.lastChild.length==0){
     //se o espaço estiver vasio entao coloca o bloco
     b1.appendChild(criarBloco(valor24()));
     break;
@@ -190,15 +195,15 @@ let b1 = document.getElementById(String(valorAleatorio16())+String(valorAleatori
   }
   }while(b1.children.length<=15);  
 }
-function calcular(x,y){
+function calcular(x){
   let elmentoEx = [];
   let elmentoInt = [];
-  if(x<200){
-    //vai pegar todos elementos mais a esquerda
+  if(x==76){// KEY_L = 76; vai para esquerda 
+    console.log('funciona1');
     for (let index2 = 1; index2 <=4; index2++) {
       for (let index1 = 4; index1 >=1; index1--) {
       let b2= document.getElementById(String(index2)+String(index1));
-      if(b2.children.length==0){continue;}
+      if(b2.lastChild.length==0){continue;}
       else if(b2.children.length!=0 && String(index2)+String(index1)=='14'){continue}
       else{
         //vai pegar todos elementos adjacente 
@@ -208,6 +213,14 @@ function calcular(x,y){
     
 
     }
+  }
+  if(x==66){//KEY_B = 66; vai para baixo
+    console.log('funciona2');
+  }
+  if(x==82){//KEY_R = 82; vai para direita
+    console.log('funciona3');
+  }if(x==85){// KEY_U = 85;vai para cima
+    console.log('funciona4');
   }
   //if(elmentoInt[0].lastChild.lastChild.innerHTML==elmentoEx[0].lastChild.lastChild.innerHTML){
   //  somar(parseInt(elmentoEx[0].lastChild.lastChild.innerHTML),parseInt(elmentoInt[0].lastChild.lastChild.innerHTML))
@@ -234,6 +247,11 @@ function storePosition(e) {
   console.log('entrou');
   inserirBloco()
 }
+//KEY_B = 66; KEY_U = 85; KEY_L = 76;KEY_R = 82;
+document.addEventListener('keydown',letra);
+function letra(e){
+  calcular(e.keyCode);
+}
 
 
 /*
@@ -247,33 +265,6 @@ function f1(e) {
    ts_x = touch.pageX;
    ts_y = touch.pageY;
    console.log(ts_x,ts_y);
-}, false);
-
-tabuleiro.addEventListener('touchmove',/*este codigo nao e meu*/ /* function(e) {
-   e.preventDefault();
-   var touch = e.changedTouches[0];
-   td_x = touch.pageX - ts_x; // deslocamento na horizontal
-   td_y = touch.pageY - ts_y; // deslocamento na vertical
-   // O movimento principal foi vertical ou horizontal?
-   if( Math.abs( td_x ) > Math.abs( td_y ) ) {
-      // é horizontal
-      if( td_x < 0 ) {
-         // é para esquerda
-         console.log('esquerda');
-      } else {
-         // direita
-         console.log('direita');
-      }
-   } else {
-      // é vertical
-      if( td_y < 0 ) {
-         // cima
-         console.log('cima');
-      } else {
-         // baixo
-         console.log('baixo');
-      }
-   }
 }, false);
 */
 
